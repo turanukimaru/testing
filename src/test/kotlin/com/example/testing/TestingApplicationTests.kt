@@ -1,10 +1,10 @@
-package com.example.webclienttesting
+package com.example.testing
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class WebclienttestingApplicationTests {
+class TestingApplicationTests {
 
     @Test
     fun contextLoads() {

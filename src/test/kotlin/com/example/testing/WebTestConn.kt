@@ -1,4 +1,4 @@
-package com.example.webclienttesting.application
+package com.example.testing
 
 import org.springframework.beans.factory.annotation.Value
 

@@ -1,4 +1,4 @@
-package com.example.webclienttesting.application
+package com.example.testing
 
 data class HelloResponse (
     val message:String

@@ -1,4 +1,4 @@
-package com.example.webclienttesting.application
+package com.example.testing
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
