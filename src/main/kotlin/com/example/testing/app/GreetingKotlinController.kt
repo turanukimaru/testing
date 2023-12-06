@@ -1,4 +1,4 @@
-package com.example.testing
+package com.example.testing.app
 
 import com.example.testing.logic.Calc
 import org.springframework.web.bind.annotation.GetMapping

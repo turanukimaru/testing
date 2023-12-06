@@ -37,15 +37,10 @@ class DummyControllerKotlinTest {
     @Test
     fun hello() {
         val response =
-            client.get().uri(conn.uri() + "/dummy").exchange().expectStatus().isOk.expectBody<String>().returnResult()
+            client.get().uri(conn.uri() + "/dummies").exchange().expectStatus().isOk.expectBody<String>().returnResult()
         println("テスト完了")
         println("response.responseBody")
         println(response.responseBody)
-    }
-    @Test
-    fun hello_json() {
-            client.get().uri(conn.uri() + "/hello").exchange().expectStatus().isOk.expectBody()
-                .jsonPath("\$.message").isEqualTo("hello")
     }
 
 }

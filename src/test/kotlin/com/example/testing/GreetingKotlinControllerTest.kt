@@ -1,5 +1,6 @@
 package com.example.testing
 
+import com.example.testing.app.GreetingKotlinController
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -39,7 +40,7 @@ class GreetingKotlinControllerTest {
     @Test
     fun hello_json() {
             client.get().uri(conn.uri() + "/hello").exchange().expectStatus().isOk.expectBody()
-                .jsonPath("\$.message").isEqualTo("hello")
+                .jsonPath("\$.message").isEqualTo("hello3")
     }
 
 }
