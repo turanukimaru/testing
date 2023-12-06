@@ -1,3 +1,4 @@
+# 実行環境から起動するとこれも起動するのか…いや確かに便利だが邪魔になるな。
 services:
 #  mariadb:
 #    image: 'mariadb:latest'
@@ -18,7 +19,17 @@ services:
       - 'MYSQL_USER=myuser'
     ports:
       - '3306'
-
+  phpmyadmin:
+    image: phpmyadmin
+    depends_on:
+      - mysql
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=verysecret
+    ports:
+      - "3001:80"
 #  postgres:
 #    image: 'postgres:latest'
 #    environment:
