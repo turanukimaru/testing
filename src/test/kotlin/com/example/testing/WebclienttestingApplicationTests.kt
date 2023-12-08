@@ -6,7 +6,7 @@ import org.springframework.test.context.TestPropertySource
 
 @SpringBootTest
 @TestPropertySource(properties = ["spring.profiles.active = test"])
-class TestingApplicationTests {
+class WebclienttestingApplicationTests {
 
     @Test
     fun contextLoads() {

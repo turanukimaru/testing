@@ -1,5 +1,6 @@
 package com.example.testing.usecase;
 
+import com.example.testing.entity.Child;
 import com.example.testing.entity.Dummy;
 import com.example.testing.service.DummyService;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,11 @@ public class DummyUseCase {
     @Transactional
     public List<Dummy> allDummies(){
         return dummyService.getDummies();
+    }
+
+    @Transactional
+    public List<Child> findChildren(Long dummyId) {
+        return dummyService.getChildren(dummyId);
     }
     @Transactional
     public Dummy newDummy() {

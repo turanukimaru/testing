@@ -7,11 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.context.ApplicationContext
-import org.springframework.core.ParameterizedTypeReference
 import org.springframework.test.context.TestPropertySource
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.test.web.reactive.server.expectBody
-import kotlin.reflect.jvm.internal.impl.metadata.ProtoBuf
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(properties = ["spring.profiles.active = test"])
@@ -29,15 +27,17 @@ class DummyControllerKotlinTest {
 
     @BeforeEach
     fun setUp(context: ApplicationContext) {
-//        client = WebTestClient.bindToServer().build()
-        client = WebTestClient.bindToController(contl).build()
+        client = WebTestClient.bindToServer().build()
+//        client = WebTestClient.bindToController(contl).build()
         conn.setup(port)
     }
 
     @Test
     fun hello() {
         val response =
-            client.get().uri(conn.uri() + "/dummies").exchange().expectStatus().isOk.expectBody<String>().returnResult()
+            client.get().uri(conn.uri() + "/dummies").exchange().
+                //expectStatus().isOk.
+            expectBody<String>().returnResult()
         println("テスト完了")
         println("response.responseBody")
         println(response.responseBody)

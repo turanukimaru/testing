@@ -1,6 +1,5 @@
-package com.example.testing.logic.app;
+package com.example.testing.app;
 
-import com.example.testing.app.GreetingController;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

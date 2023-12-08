@@ -11,4 +11,8 @@ public class Child {
     private Long childId;
     @Column
     private String name;
+    @Column
+    private String text;
+    @Column(name = "dummy_id")
+    private Long dummyId;
 }
