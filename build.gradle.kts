@@ -13,6 +13,7 @@ group = "com.example"
 version = "0.0.1-SNAPSHOT"
 
 // Intellij の Gradle コンパイラバージョンが 17 でないとビルド・プロジェクトの解析すら出来ません。
+// Gradlew が使うので JAVA_HOME も 1.7 にしておくのが良いでしょう。
 // デフォルトの IntelliJ には diffblue, lombok プラグインが入ってないので入れてください。
 java {
     sourceCompatibility = JavaVersion.VERSION_17
