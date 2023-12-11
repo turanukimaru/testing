@@ -1,1 +1,1 @@
-rootProject.name = "webclienttesting"
+rootProject.name = "testing"

@@ -1,24 +1,15 @@
-# 実行環境から起動するとこれも起動するのか…いや確かに便利だが邪魔になるな。
 services:
-#  mariadb:
-#    image: 'mariadb:latest'
-#    environment:
-#      - 'MARIADB_DATABASE=mydatabase'
-#      - 'MARIADB_PASSWORD=secret'
-#      - 'MARIADB_ROOT_PASSWORD=verysecret'
-#      - 'MARIADB_USER=myuser'
-#    ports:
-#      - '3306'
-
   mysql:
     image: 'mysql:latest'
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d
     environment:
       - 'MYSQL_DATABASE=mydatabase'
       - 'MYSQL_PASSWORD=secret'
       - 'MYSQL_ROOT_PASSWORD=verysecret'
       - 'MYSQL_USER=myuser'
     ports:
-      - '3306'
+      - '3306:3306' # 右側の外部ポートを書かなくてもローカルサーバは起動する（多分同じコンテナで動いている）がテスト時の Flyway とかはその接続を使えないので接続エラーになる。
   phpmyadmin:
     image: phpmyadmin
     depends_on:
@@ -38,3 +29,12 @@ services:
 #      - 'POSTGRES_USER=myuser'
 #    ports:
 #      - '5432'
+#  mariadb:
+#    image: 'mariadb:latest'
+#    environment:
+#      - 'MARIADB_DATABASE=mydatabase'
+#      - 'MARIADB_PASSWORD=secret'
+#      - 'MARIADB_ROOT_PASSWORD=verysecret'
+#      - 'MARIADB_USER=myuser'
+#    ports:
+#      - '3306'

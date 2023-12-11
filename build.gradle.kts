@@ -1,8 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.1.5"
-    id("io.spring.dependency-management") version "1.1.3"
+    id("org.springframework.boot") version "3.2.0"
+    id("io.spring.dependency-management") version "1.1.4"
+    id("org.flywaydb.flyway") version "10.0.0"
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
     kotlin("plugin.jpa") version "1.8.22"
@@ -11,6 +12,8 @@ plugins {
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
 
+// Intellij の Gradle コンパイラバージョンが 17 でないとビルド・プロジェクトの解析すら出来ません。
+// デフォルトの IntelliJ には diffblue, lombok プラグインが入ってないので入れてください。
 java {
     sourceCompatibility = JavaVersion.VERSION_17
 }
@@ -28,11 +31,11 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
-    implementation("org.springframework.boot:spring-boot-starter-graphql")
+//    implementation("org.springframework.boot:spring-boot-starter-graphql")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-//    implementation("org.flywaydb:flyway-core")
-//    implementation("org.flywaydb:flyway-mysql")
+    implementation("org.flywaydb:flyway-core")
+    implementation("org.flywaydb:flyway-mysql")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -44,7 +47,7 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework:spring-webflux")
-    testImplementation("org.springframework.graphql:spring-graphql-test")
+//    testImplementation("org.springframework.graphql:spring-graphql-test")
     testImplementation("org.hsqldb:hsqldb:2.7.1")
 }
 
@@ -61,4 +64,10 @@ tasks.withType<Test> {
 
 tasks.bootBuildImage {
     builder.set("paketobuildpacks/builder-jammy-base:latest")
+}
+
+flyway {
+    url = "jdbc:mysql://localhost:3306/mydatabase"
+    user = "myuser"
+    password = "secret"
 }
