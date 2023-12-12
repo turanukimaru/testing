@@ -12,7 +12,7 @@ import java.util.List;
  *
  */
 @RestController
-@RequestMapping("/dummies")
+@RequestMapping(value = "/dummies")
 public class DummyController {
     private final DummyUseCase dummyUseCase;
 
@@ -24,7 +24,8 @@ public class DummyController {
     public List<Dummy> list() {
         return dummyUseCase.allDummies();
     }
-    @PutMapping
+
+    @PostMapping
     public Dummy add(@RequestBody @Validated DummyAddRequest request) {
         return dummyUseCase.newDummy(request.toDummy());
 

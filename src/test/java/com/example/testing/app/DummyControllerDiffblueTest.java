@@ -67,6 +67,24 @@ class DummyControllerDiffblueTest {
                 .andExpect(MockMvcResultMatchers.content().string("[]"));
     }
 
+    @Test
+    void testAdd3() throws Exception {
+        when(dummyUseCase.allDummies()).thenReturn(new ArrayList<>());
+
+        DummyAddRequest dummyAddRequest = new DummyAddRequest();
+        dummyAddRequest.setComment("");
+        dummyAddRequest.setName("Name");
+        dummyAddRequest.setText("Text");
+        String content = (new ObjectMapper()).writeValueAsString(dummyAddRequest);
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/dummies")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(content);
+        MockMvcBuilders.standaloneSetup(dummyController)
+                .build()
+                .perform(requestBuilder)
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
+
     /**
      * Method under test: {@link DummyController#children(Long)}
      */
