@@ -3,6 +3,7 @@ package com.example.testing.app;
 import com.example.testing.entity.Child;
 import com.example.testing.entity.Dummy;
 import com.example.testing.usecase.DummyUseCase;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +25,8 @@ public class DummyController {
         return dummyUseCase.allDummies();
     }
     @PutMapping
-    public Dummy add() {
-        return dummyUseCase.newDummy();
+    public Dummy add(@RequestBody @Validated DummyAddRequest request) {
+        return dummyUseCase.newDummy(request.toDummy());
 
     }
     @DeleteMapping("/{id}")

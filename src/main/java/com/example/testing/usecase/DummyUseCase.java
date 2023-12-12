@@ -26,8 +26,7 @@ public class DummyUseCase {
         return dummyService.getChildren(dummyId);
     }
     @Transactional
-    public Dummy newDummy() {
-        Dummy dummy = new Dummy("default name","default text","default comment");
+    public Dummy newDummy(Dummy dummy) {
         dummyService.saveDummy(dummy);
         return dummy;
     }
