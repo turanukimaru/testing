@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * test 自動生成はできない…実装が無いからテストに使える情報が無いのか？
+ * DB接続をきちんと作ればテストも作成できる。
  */
 @Repository
 public interface ChildRepository extends JpaRepository<Child, Long> {
