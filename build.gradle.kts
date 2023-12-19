@@ -7,13 +7,15 @@ plugins {
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
     kotlin("plugin.jpa") version "1.8.22"
+    // Graalvm はコンパイラバージョンの問題で使えない。
 }
 
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_17    // IntellijのGradle のバージョンも 17 に合わせること。
+
 }
 
 configurations {
